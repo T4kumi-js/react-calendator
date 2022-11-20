@@ -9,13 +9,6 @@ const packageJson = require('./package.json');
 
 export default {
     input: './src/index.js',
-    watch: {
-        include: './src/**',
-        exclude: [
-            './stories/*'
-        ],
-        clearScreen: false
-    },
     output: [
         {
             file: packageJson.main,
