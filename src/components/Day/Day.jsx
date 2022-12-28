@@ -47,23 +47,23 @@ export default function Day(props) {
         }
     };
 
-    let classNameString = 'day';
+    const classList = ['day'];
 
     if (toShortISOString(getToday()) === toShortISOString(props.day)) {
-        classNameString += ' today';
+        classList.push('today');
     }
 
     if (toShortISOString(selectedDate) === toShortISOString(props.day)) {
-        classNameString += ' selected';
+        classList.push('selected');
     } else if (
         (minDate && minDate > props.day) ||
         (maxDate && maxDate < props.day)
     ) {
-        classNameString += ' out-of-range';
+        classList.push('out-of-range');
     } else if (currentDateView.getMonth() !== props.day.getMonth()) {
-        classNameString += ' out-of-month';
+        classList.push('out-of-month');
     } else if (holiday || props.day.getDay() === 0) {
-        classNameString += ' holiday';
+        classList.push('holiday');
     }
 
     if (customColorizeDay) {
@@ -71,7 +71,7 @@ export default function Day(props) {
             if (!((minDate && minDate > props.day) || (maxDate && maxDate < props.day))) {
                 let customClass = customColorizeDay(props.day, holiday);
                 if (customClass) {
-                    classNameString += ` ${customClass}`;
+                    classList.push(customClass);
                 }
             }
         }
@@ -79,7 +79,7 @@ export default function Day(props) {
 
     return (
         <div
-            className={classNameString}
+            className={classList.join(' ')}
             onClick={handleClick}
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave}

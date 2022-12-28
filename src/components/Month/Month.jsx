@@ -13,18 +13,18 @@ export default function Month(props) {
         setInMonthSelection(false);
     };
 
-    let classNameString = 'month';
+    const classList = ['month'];
 
     if (toShortISOString(month).slice(0, 7) === toShortISOString(getToday()).slice(0, 7)) {
-        classNameString += ' today';
+        classList.push('today');
     }
 
     if (toShortISOString(month).slice(0, 7) === toShortISOString(selectedDate).slice(0, 7)) {
-        classNameString += ' selected';
+        classList.push('selected');
     }
 
     return (
-        <div className={classNameString} onClick={handleClick}>
+        <div className={classList.join(' ')} onClick={handleClick}>
             <span>{props.monthName}</span>
         </div>
     );
