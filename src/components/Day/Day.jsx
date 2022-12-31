@@ -3,9 +3,8 @@ import { CalendatorSettingsContext } from '../../context/CalendatorSettings';
 import { getToday, toShortISOString, isHoliday } from '../../utils';
 
 export default function Day(props) {
-    const { state, setters, settings } = useContext(CalendatorSettingsContext);
+    const { state, dispatch, settings } = useContext(CalendatorSettingsContext);
     const { selectedDate, currentDateView } = state;
-    const { setSelectedDate, setCurrentDateView } = setters;
     const { minDate, maxDate, holidays, customColorizeDay } = settings;
     const holiday = isHoliday(props.day, holidays);
 
@@ -27,8 +26,7 @@ export default function Day(props) {
             return;
         }
 
-        setSelectedDate(props.day);
-        setCurrentDateView(props.day);
+        dispatch({ type: 'SELECTED_DATE', selectedDate: props.day });
     };
 
     const handleMouseOver = (event) => {

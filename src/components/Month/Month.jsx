@@ -3,14 +3,12 @@ import { CalendatorSettingsContext } from '../../context/CalendatorSettings';
 import { toShortISOString, getToday } from '../../utils';
 
 export default function Month(props) {
-    const { state, setters } = useContext(CalendatorSettingsContext);
+    const { state, dispatch } = useContext(CalendatorSettingsContext);
     const { currentDateView, selectedDate } = state;
-    const { setCurrentDateView, setInMonthSelection } = setters;
     const month = new Date(currentDateView.getFullYear(), props.monthIndex, 1);
 
     const handleClick = (event) => {
-        setCurrentDateView(month);
-        setInMonthSelection(false);
+        dispatch({ type: 'SELECTED_MONTH', selectedMonth: month });
     };
 
     const classList = ['month'];

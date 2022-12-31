@@ -3,9 +3,8 @@ import { CalendatorSettingsContext } from '../../context/CalendatorSettings';
 import * as translations from '../../translations';
 
 export default function Header(props) {
-    const { state, setters, settings } = useContext(CalendatorSettingsContext);
+    const { state, dispatch, settings } = useContext(CalendatorSettingsContext);
     const { inMonthSelection, currentDateView } = state;
-    const { setInMonthSelection, setCurrentDateView } = setters;
     const languageStrings = translations[settings.lang];
 
     const handleClickPrevious = () => {
@@ -27,7 +26,7 @@ export default function Header(props) {
             newDateView = new Date(year, month, 1)
         }
 
-        setCurrentDateView(newDateView);
+        dispatch({ type: 'SELECTED_DATE_VIEW', newDateView });
     };
 
     const handleClickNext = () => {
@@ -49,11 +48,11 @@ export default function Header(props) {
             newDateView = new Date(year, month, 1);
         }
 
-        setCurrentDateView(newDateView);
+        dispatch({ type: 'SELECTED_DATE_VIEW', newDateView });
     };
 
     const handleClickLabel = () => {
-        setInMonthSelection(true); 
+        dispatch({ type: 'TOGGLE_MONTH_LABEL' });
     };
 
     return (
