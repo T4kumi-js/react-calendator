@@ -21,6 +21,7 @@ function Calendator(props) {
 Calendator.propTypes = {
     lang: PropTypes.oneOf(['en', 'es', 'fr']),
     startOnMonday: PropTypes.bool,
+    preventClickOnHoliday: PropTypes.bool,
     selectedDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
@@ -32,7 +33,13 @@ Calendator.propTypes = {
 Calendator.defaultProps = {
     lang: 'en',
     startOnMonday: false,
-    selectedDate: new Date()
+    preventClickOnHoliday: false,
+    selectedDate: new Date(),
+    minDate: null,
+    maxDate: null,
+    onClickDay: null,
+    onMouseOverDay: null,
+    onMouseLeaveDay: null
 };
 
 export default Calendator;
