@@ -3,69 +3,69 @@ import { CalendatorSettingsContext } from '../../context/CalendatorSettings';
 import * as translations from '../../translations';
 
 export default function Header(props) {
-    const { state, dispatch, settings } = useContext(CalendatorSettingsContext);
-    const { inMonthSelection, currentDateView } = state;
-    const languageStrings = translations[settings.lang];
+  const { state, dispatch, settings } = useContext(CalendatorSettingsContext);
+  const { inMonthSelection, currentDateView } = state;
+  const languageStrings = translations[settings.lang];
 
-    const handleClickPrevious = () => {
-        let newDateView;
+  const handleClickPrevious = () => {
+    let newDateView;
 
-        if (inMonthSelection) {
-            newDateView = new Date(currentDateView.getFullYear() - 1, 0, 1);
-        } else {
-            let year = currentDateView.getFullYear();
-            let month = currentDateView.getMonth();
+    if (inMonthSelection) {
+      newDateView = new Date(currentDateView.getFullYear() - 1, 0, 1);
+    } else {
+      let year = currentDateView.getFullYear();
+      let month = currentDateView.getMonth();
 
-            if (month === 0) {
-                year -= 1;
-                month = 11;
-            } else {
-                month -= 1;
-            }
+      if (month === 0) {
+        year -= 1;
+        month = 11;
+      } else {
+        month -= 1;
+      }
 
-            newDateView = new Date(year, month, 1)
-        }
+      newDateView = new Date(year, month, 1)
+    }
 
-        dispatch({ type: 'SELECTED_DATE_VIEW', newDateView });
-    };
+    dispatch({ type: 'SELECTED_DATE_VIEW', newDateView });
+  };
 
-    const handleClickNext = () => {
-        let newDateView;
+  const handleClickNext = () => {
+    let newDateView;
 
-        if (inMonthSelection) {
-            newDateView = new Date(currentDateView.getFullYear() + 1, 0, 1);
-        } else {
-            let year = currentDateView.getFullYear();
-            let month = currentDateView.getMonth();
+    if (inMonthSelection) {
+      newDateView = new Date(currentDateView.getFullYear() + 1, 0, 1);
+    } else {
+      let year = currentDateView.getFullYear();
+      let month = currentDateView.getMonth();
 
-            if (month === 11) {
-                year += 1;
-                month = 0;
-            } else {
-                month += 1;
-            }
+      if (month === 11) {
+        year += 1;
+        month = 0;
+      } else {
+        month += 1;
+      }
 
-            newDateView = new Date(year, month, 1);
-        }
+      newDateView = new Date(year, month, 1);
+    }
 
-        dispatch({ type: 'SELECTED_DATE_VIEW', newDateView });
-    };
+    dispatch({ type: 'SELECTED_DATE_VIEW', newDateView });
+  };
 
-    const handleClickLabel = () => {
-        dispatch({ type: 'TOGGLE_MONTH_LABEL' });
-    };
+  const handleClickLabel = () => {
+    dispatch({ type: 'TOGGLE_MONTH_LABEL' });
+  };
 
-    return (
-        <div className="calendar-header">
-            <button type="button" className="prev-button" onClick={handleClickPrevious}></button>
+  return (
+    <div className="calendar-header">
+      <button type="button" className="prev-button" onClick={handleClickPrevious}></button>
 
-            <div className="date-label" onClick={handleClickLabel}>
-                <span className={(inMonthSelection) ? 'month-label hidden' : 'month-label'}>{languageStrings.months[currentDateView.getMonth()]}</span>
-                {' '}
-                <span className="year-label">{currentDateView.getFullYear()}</span>
-            </div>
+      <div className="date-label" onClick={handleClickLabel}>
+        <span className={(inMonthSelection) ? 'month-label hidden' : 'month-label'}>{languageStrings.months[currentDateView.getMonth()]}</span>
+        {' '}
+        <span className="year-label">{currentDateView.getFullYear()}</span>
+      </div>
 
-            <button type="button" className="next-button" onClick={handleClickNext}></button>
-        </div>
-    );
+      <button type="button" className="next-button" onClick={handleClickNext}></button>
+    </div>
+  );
 };

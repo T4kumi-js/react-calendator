@@ -7,39 +7,39 @@ import { Footer } from '../Footer';
 import './Calendator.css';
 
 function Calendator(props) {
-    return (
-        <CalendatorSettingsProvider settings={{...props}}>
-            <div className="calendator">
-                <Header />
-                <Body />
-                <Footer />
-            </div>
-        </CalendatorSettingsProvider>
-    );
+  return (
+    <CalendatorSettingsProvider settings={{...props}}>
+      <div className="calendator">
+        <Header />
+        <Body />
+        <Footer />
+      </div>
+    </CalendatorSettingsProvider>
+  );
 }
 
 Calendator.propTypes = {
-    lang: PropTypes.oneOf(['en', 'es', 'fr']),
-    startOnMonday: PropTypes.bool,
-    preventClickOnHoliday: PropTypes.bool,
-    selectedDate: PropTypes.instanceOf(Date),
-    minDate: PropTypes.instanceOf(Date),
-    maxDate: PropTypes.instanceOf(Date),
-    onClickDay: PropTypes.func,
-    onMouseOverDay: PropTypes.func,
-    onMouseLeaveDay: PropTypes.func
+  lang: PropTypes.oneOf(['en', 'es', 'fr']),
+  startOnMonday: PropTypes.bool,
+  preventClickOnHoliday: PropTypes.bool,
+  selectedDate: PropTypes.instanceOf(Date),
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
+  onClickDay: PropTypes.func,
+  onMouseOverDay: PropTypes.func,
+  onMouseLeaveDay: PropTypes.func
 };
 
 Calendator.defaultProps = {
-    lang: 'en',
-    startOnMonday: false,
-    preventClickOnHoliday: false,
-    selectedDate: new Date(),
-    minDate: null,
-    maxDate: null,
-    onClickDay: null,
-    onMouseOverDay: null,
-    onMouseLeaveDay: null
+  lang: 'en',
+  startOnMonday: false,
+  preventClickOnHoliday: false,
+  selectedDate: new Date(),
+  minDate: null,
+  maxDate: null,
+  onClickDay: null,
+  onMouseOverDay: null,
+  onMouseLeaveDay: null
 };
 
 export default Calendator;
